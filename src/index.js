@@ -1,1 +1,1 @@
-import './components/metaDescription/metaDescription.js';
+import './components/metaDescription/metaDescription';

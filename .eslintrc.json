@@ -1,0 +1,6 @@
+{
+  "extends": ["@alleyinteractive/eslint-config"],
+  "settings": {
+    "import/resolver": "webpack"
+  }
+}

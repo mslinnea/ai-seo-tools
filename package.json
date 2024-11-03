@@ -3,13 +3,20 @@
 		"node": ">=22.0.0"
 	},
 	"devDependencies": {
-		"@wordpress/scripts": "^30.3.0"
+		"@alleyinteractive/eslint-config": "^0.1.6",
+		"@eslint/js": "^9.14.0",
+		"@wordpress/scripts": "^28.0.2",
+		"eslint": "^8.57.1",
+		"eslint-import-resolver-webpack": "^0.13.9",
+		"eslint-plugin-react": "^7.37.2",
+		"globals": "^15.11.0"
 	},
 	"dependencies": {
-		"@wordpress/api-fetch": "^7.11.0",
-		"@wordpress/components": "^28.11.0",
-		"@wordpress/editor": "^14.11.0",
-		"@wordpress/plugins": "^7.11.0",
+		"@wordpress/api-fetch": "^7.0.1",
+		"@wordpress/components": "^28.0.3",
+		"@wordpress/data": "^10.0.2",
+		"@wordpress/editor": "^14.0.8",
+		"@wordpress/plugins": "^7.0.3",
 		"react": "^18.3.1",
 		"react-dom": "^18.3.1"
 	},
@@ -17,6 +24,8 @@
 		"build": "wp-scripts build",
 		"start": "wp-scripts start",
 		"format": "wp-scripts format",
-		"lint-js": "wp-scripts lint-js"
+		"lint-js": "wp-scripts lint-js",
+		"lint": "eslint -c .eslintrc.json .",
+		"lint:fix": "eslint -c .eslintrc.json --fix ."
 	}
 }
