@@ -1,42 +1,27 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import {
   Button,
-  ButtonGroup,
   TextareaControl,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { registerPlugin } from '@wordpress/plugins';
 import { PluginDocumentSettingPanel } from '@wordpress/editor';
-
-import apiFetch from '@wordpress/api-fetch';
+import { usePostMetaValue } from '@alleyinteractive/block-editor-tools';
 
 const { store: aiStore } = window.aiServices.ai;
 
 function SettingsScreen() {
-  const [metaDescription, setMetaDescription] = useState('');
+  const [metaDescription, setMetaDescription] = usePostMetaValue('meta_description');
+  const [isGeneratingDescription, setIsGeneratingDescription] = useState(false);
   const service = useSelect((select) => select(aiStore).getAvailableService(['text_generation']));
   const postContent = useSelect((select) => select('core/editor').getEditedPostAttribute('content'));
   const postTitle = useSelect((select) => select('core/editor').getEditedPostAttribute('title'));
-  useEffect(() => {
-    // Fetch the existing meta description from the server when the component mounts
-    apiFetch({ path: '/wp/v2/settings' }).then((settings) => {
-      setMetaDescription(settings.meta_description || '');
-    });
-  }, []);
   if (!service) {
     return null;
   }
-  const saveMetaDescription = () => {
-    apiFetch({
-      path: '/wp/v2/settings',
-      method: 'POST',
-      data: { meta_description: metaDescription },
-    }).then(() => {
-      alert('Meta description saved!');
-    });
-  };
 
   const handleGenerateClick = async () => {
+    setIsGeneratingDescription(true);
     let candidates;
     try {
       candidates = await service.generateText(
@@ -66,6 +51,7 @@ function SettingsScreen() {
     );
 
     setMetaDescription(description);
+    setIsGeneratingDescription(false);
   };
 
   return (
@@ -80,11 +66,13 @@ function SettingsScreen() {
         value={metaDescription}
         onChange={(value) => setMetaDescription(value)}
       />
-      <ButtonGroup>
-        <Button isPrimary onClick={saveMetaDescription}>Save</Button>
-        <Button isSecondary onClick={handleGenerateClick}>Generate</Button>
-      </ButtonGroup>
-
+      <Button
+        isPrimary
+        onClick={handleGenerateClick}
+        disabled={isGeneratingDescription}
+      >
+        Generate
+      </Button>
     </PluginDocumentSettingPanel>
   );
 }

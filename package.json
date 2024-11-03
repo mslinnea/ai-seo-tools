@@ -12,6 +12,7 @@
 		"globals": "^15.11.0"
 	},
 	"dependencies": {
+		"@alleyinteractive/block-editor-tools": "^0.5.1",
 		"@wordpress/api-fetch": "^7.0.1",
 		"@wordpress/components": "^28.0.3",
 		"@wordpress/data": "^10.0.2",

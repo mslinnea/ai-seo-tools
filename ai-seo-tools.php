@@ -21,7 +21,6 @@ add_action(
 			return;
 		}
 
-		// Read asset metadata file and manually add AI Services dependency script.
 		$asset_metadata                   = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
 		$asset_metadata['dependencies'][] = 'ais-ai-store';
 
@@ -35,3 +34,14 @@ add_action(
 		);
 	}
 );
+
+register_post_meta(
+	'',
+	'meta_description',
+	[
+		'show_in_rest' => true,
+		'single'       => true,
+		'type'         => 'string',
+	]
+);
+

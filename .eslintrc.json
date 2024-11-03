@@ -1,6 +1,20 @@
 {
-  "extends": ["@alleyinteractive/eslint-config"],
+  "extends": [
+    "@alleyinteractive/eslint-config"
+  ],
   "settings": {
-    "import/resolver": "webpack"
+    "import/resolver": {
+      "node": {
+        "paths": [
+          "node_modules"
+        ],
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    }
   }
 }
