@@ -42,6 +42,7 @@ function SettingsScreen() {
       );
     } catch (error) {
       window.console.error(error);
+      setIsGeneratingDescription(false);
       return;
     }
 
