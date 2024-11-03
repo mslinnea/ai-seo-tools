@@ -1,2 +1,6 @@
-# ai-seo-tools
-AI SEO Tools
+# WordPress Plugin: AI SEO Tools
+
+## Features
+
+### Generate Meta Description
+
