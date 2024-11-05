@@ -1,1 +1,1 @@
-import './components/metaDescription/metaDescription';
+import './components/settingsScreen';

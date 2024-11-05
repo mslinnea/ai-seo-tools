@@ -45,3 +45,12 @@ register_post_meta(
 	]
 );
 
+register_post_meta(
+	'',
+	'meta_keywords',
+	[
+		'show_in_rest' => true,
+		'single'       => true,
+		'type'         => 'string',
+	]
+);
