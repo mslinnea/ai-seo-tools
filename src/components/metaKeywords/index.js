@@ -11,7 +11,7 @@ import generateKeywordsPrompt from './prompt'; // Adjust this if you have a sepa
 const { store: aiStore } = window.aiServices.ai;
 
 function MetaKeywordsField() {
-  const [metaKeywords, setMetaKeywords] = usePostMetaValue('meta_keywords');
+  const [metaKeywords, setMetaKeywords] = usePostMetaValue('_meta_keywords');
   const [isGeneratingKeywords, setIsGeneratingKeywords] = useState(false);
   const service = useSelect((select) => select(aiStore).getAvailableService(['text_generation']));
   const postContent = useSelect((select) => select('core/editor').getEditedPostAttribute('content'));
@@ -58,6 +58,7 @@ function MetaKeywordsField() {
     <div className="meta-keyword-field">
       <TextareaControl
         label="Meta Keywords"
+        rows={8}
         value={metaKeywords}
         onChange={(value) => setMetaKeywords(value)}
       />

@@ -11,7 +11,7 @@ import generatePrompt from './prompt';
 const { store: aiStore } = window.aiServices.ai;
 
 function MetaDescriptionField() {
-  const [metaDescription, setMetaDescription] = usePostMetaValue('meta_description');
+  const [metaDescription, setMetaDescription] = usePostMetaValue('_meta_description');
   const [isGeneratingDescription, setIsGeneratingDescription] = useState(false);
   const service = useSelect((select) => select(aiStore).getAvailableService(['text_generation']));
   const postContent = useSelect((select) => select('core/editor').getEditedPostAttribute('content'));
@@ -58,6 +58,7 @@ function MetaDescriptionField() {
     <div className="meta-description-field">
       <TextareaControl
         label="Meta Description"
+		rows={8}
         value={metaDescription}
         onChange={(value) => setMetaDescription(value)}
       />
