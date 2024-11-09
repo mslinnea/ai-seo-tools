@@ -8,11 +8,22 @@ be compatible with all AI services supported by the [AI Services Plugin](https:/
 - Generate Meta Description
 - Generate Meta Keywords
 
-# Development
+# Demo with OpenAI gpt-3.5-turbo model
 
-- Install the [AI Services Plugin](https://github.com/felixarntz/ai-services).
-- Configure the AI Services Plugin with your API key.
+![CleanShot 2024-11-09 at 08 59 00](https://github.com/user-attachments/assets/1f137840-f8f2-42e9-be60-d32e0e011bcb)
+
+# Requirements
+
+- WordPress 6.6+
+- PHP 8.2+
+
+# Installation
+- First Install and Activate the [AI Services Plugin](https://wordpress.org/plugins/ai-services/)
+- Navigate to Settings => AI Services
+- Configure an API key for at least one AI service.
+- Install this plugin by downloading the zip from the `main-built` branch or the latest release.
+
+# Development
 - `nvm use` to ensure you are using the correct version of Node.js.
-- `nvm install` to install the correct version of Node.js.
 - `npm install` to install dependencies.
 - `npm run build` to build the plugin.
