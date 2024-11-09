@@ -12,6 +12,10 @@
  * Requires Plugins: ai-services
  */
 
+namespace LinSoftware\AISEOTools;
+
+require_once __DIR__ . '/inc/post-meta.php';
+require_once __DIR__ . '/inc/wp-head.php';
 
 add_action(
 	'enqueue_block_editor_assets',
@@ -33,15 +37,5 @@ add_action(
 			['strategy' => 'defer' ]
 		);
 	}
-);
-
-register_post_meta(
-	'',
-	'meta_description',
-	[
-		'show_in_rest' => true,
-		'single'       => true,
-		'type'         => 'string',
-	]
 );
 
