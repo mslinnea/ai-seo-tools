@@ -19,11 +19,13 @@ jobs:
 
       - run: npm ci
 
-      - run: npm run build --if-present
+      - run: npm run build
 
-      - name: Upload Release Artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: build
-          path: |
-            build/**
+      - name: Push to Built Branch
+        run: |
+            git config --global user.name "github-actions[bot]"
+            git config --global user.email "github-actions[bot]@users.noreply.github.com"
+            git checkout -b main-built
+            git add build/
+            git commit -m "Automated build output"
+            git push origin main-built --force
