@@ -8,11 +8,11 @@ be compatible with all AI services supported by the [AI Services Plugin](https:/
 - Generate Meta Description
 - Generate Meta Keywords
 
-# Installation
-
-This plugin is in its very early stages and currently requires a build step.
+# Development
 
 - Install the [AI Services Plugin](https://github.com/felixarntz/ai-services).
+- Configure the AI Services Plugin with your API key.
 - `nvm use` to ensure you are using the correct version of Node.js.
+- `nvm install` to install the correct version of Node.js.
 - `npm install` to install dependencies.
 - `npm run build` to build the plugin.
