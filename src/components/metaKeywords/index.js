@@ -13,10 +13,23 @@ const { store: aiStore } = window.aiServices.ai;
 function MetaKeywordsField() {
   const [metaKeywords, setMetaKeywords] = usePostMetaValue('_meta_keywords');
   const [isGeneratingKeywords, setIsGeneratingKeywords] = useState(false);
-  const service = useSelect((select) => select(aiStore).getAvailableService(['text_generation']));
-  const postContent = useSelect((select) => select('core/editor').getEditedPostAttribute('content'));
-  const postTitle = useSelect((select) => select('core/editor').getEditedPostAttribute('title'));
-
+  const service = useSelect(
+    (select) => select(aiStore)
+      .getAvailableService(
+        { capabilities: ['text_generation'] },
+      ),
+    [],
+  );
+  const postContent = useSelect(
+    (select) => select('core/editor')
+      .getEditedPostAttribute('content'),
+    [],
+  );
+  const postTitle = useSelect(
+    (select) => select('core/editor')
+      .getEditedPostAttribute('title'),
+    [],
+  );
   if (!service) {
     return null;
   }
