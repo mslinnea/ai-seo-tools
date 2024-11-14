@@ -1,21 +1,35 @@
 import { useState } from 'react';
 import {
-	Button,
-	TextareaControl,
-	Spinner,
+  Button,
+  TextareaControl,
+  Spinner,
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { usePostMetaValue } from '@alleyinteractive/block-editor-tools';
 import generatePrompt from './prompt';
 
-const { store: aiStore } = window.aiServices.ai;
+const { store: aiStore, helpers: aiHelpers } = window.aiServices.ai;
 
 function MetaDescriptionField() {
   const [metaDescription, setMetaDescription] = usePostMetaValue('_meta_description');
   const [isGeneratingDescription, setIsGeneratingDescription] = useState(false);
-  const service = useSelect((select) => select(aiStore).getAvailableService(['text_generation']));
-  const postContent = useSelect((select) => select('core/editor').getEditedPostAttribute('content'));
-  const postTitle = useSelect((select) => select('core/editor').getEditedPostAttribute('title'));
+  const service = useSelect(
+    (select) => select(aiStore)
+      .getAvailableService(
+        { capabilities: ['text_generation'] },
+      ),
+    [],
+  );
+  const postContent = useSelect(
+    (select) => select('core/editor')
+      .getEditedPostAttribute('content'),
+    [],
+  );
+  const postTitle = useSelect(
+    (select) => select('core/editor')
+      .getEditedPostAttribute('title'),
+    [],
+  );
 
   if (!service) {
     return null;
@@ -26,14 +40,7 @@ function MetaDescriptionField() {
     let candidates;
     try {
       candidates = await service.generateText(
-        {
-          role: 'user',
-          parts: [
-            {
-              text: generatePrompt({ postTitle, postContent }),
-            },
-          ],
-        },
+        generatePrompt({ postTitle, postContent }),
         {
           feature: 'add-meta-description-plugin',
           capabilities: ['text_generation'],
@@ -45,9 +52,8 @@ function MetaDescriptionField() {
       return;
     }
 
-    const description = candidates[0].content.parts[0].text.replaceAll(
-      '\n\n\n\n',
-      '\n\n',
+    const description = aiHelpers.getTextFromContents(
+      aiHelpers.getCandidateContents(candidates),
     );
 
     setMetaDescription(description);
@@ -58,7 +64,7 @@ function MetaDescriptionField() {
     <div className="meta-description-field">
       <TextareaControl
         label="Meta Description"
-		rows={8}
+        rows={8}
         value={metaDescription}
         onChange={(value) => setMetaDescription(value)}
       />

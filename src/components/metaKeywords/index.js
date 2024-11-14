@@ -6,17 +6,30 @@ import {
 } from '@wordpress/components';
 import { useSelect } from '@wordpress/data';
 import { usePostMetaValue } from '@alleyinteractive/block-editor-tools';
-import generateKeywordsPrompt from './prompt'; // Adjust this if you have a separate function for keywords
+import generateKeywordsPrompt from './prompt';
 
-const { store: aiStore } = window.aiServices.ai;
+const { store: aiStore, helpers: aiHelpers } = window.aiServices.ai;
 
 function MetaKeywordsField() {
   const [metaKeywords, setMetaKeywords] = usePostMetaValue('_meta_keywords');
   const [isGeneratingKeywords, setIsGeneratingKeywords] = useState(false);
-  const service = useSelect((select) => select(aiStore).getAvailableService(['text_generation']));
-  const postContent = useSelect((select) => select('core/editor').getEditedPostAttribute('content'));
-  const postTitle = useSelect((select) => select('core/editor').getEditedPostAttribute('title'));
-
+  const service = useSelect(
+    (select) => select(aiStore)
+      .getAvailableService(
+        { capabilities: ['text_generation'] },
+      ),
+    [],
+  );
+  const postContent = useSelect(
+    (select) => select('core/editor')
+      .getEditedPostAttribute('content'),
+    [],
+  );
+  const postTitle = useSelect(
+    (select) => select('core/editor')
+      .getEditedPostAttribute('title'),
+    [],
+  );
   if (!service) {
     return null;
   }
@@ -26,14 +39,7 @@ function MetaKeywordsField() {
     let candidates;
     try {
       candidates = await service.generateText(
-        {
-          role: 'user',
-          parts: [
-            {
-              text: generateKeywordsPrompt({ postTitle, postContent }),
-            },
-          ],
-        },
+        generateKeywordsPrompt({ postTitle, postContent }),
         {
           feature: 'add-meta-keywords-plugin',
           capabilities: ['text_generation'],
@@ -45,9 +51,8 @@ function MetaKeywordsField() {
       return;
     }
 
-    const keywords = candidates[0].content.parts[0].text.replaceAll(
-      '\n\n\n\n',
-      '\n\n',
+    const keywords = aiHelpers.getTextFromContents(
+      aiHelpers.getCandidateContents(candidates),
     );
 
     setMetaKeywords(keywords);
