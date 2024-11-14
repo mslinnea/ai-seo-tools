@@ -40,14 +40,7 @@ function MetaDescriptionField() {
     let candidates;
     try {
       candidates = await service.generateText(
-        {
-          role: 'user',
-          parts: [
-            {
-              text: generatePrompt({ postTitle, postContent }),
-            },
-          ],
-        },
+        generatePrompt({ postTitle, postContent }),
         {
           feature: 'add-meta-description-plugin',
           capabilities: ['text_generation'],

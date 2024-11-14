@@ -39,14 +39,7 @@ function MetaKeywordsField() {
     let candidates;
     try {
       candidates = await service.generateText(
-        {
-          role: 'user',
-          parts: [
-            {
-              text: generateKeywordsPrompt({ postTitle, postContent }),
-            },
-          ],
-        },
+        generateKeywordsPrompt({ postTitle, postContent }),
         {
           feature: 'add-meta-keywords-plugin',
           capabilities: ['text_generation'],
