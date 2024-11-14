@@ -8,7 +8,7 @@ import { useSelect } from '@wordpress/data';
 import { usePostMetaValue } from '@alleyinteractive/block-editor-tools';
 import generatePrompt from './prompt';
 
-const { store: aiStore } = window.aiServices.ai;
+const { store: aiStore, helpers: aiHelpers } = window.aiServices.ai;
 
 function MetaDescriptionField() {
   const [metaDescription, setMetaDescription] = usePostMetaValue('_meta_description');
@@ -59,9 +59,8 @@ function MetaDescriptionField() {
       return;
     }
 
-    const description = candidates[0].content.parts[0].text.replaceAll(
-      '\n\n\n\n',
-      '\n\n',
+    const description = aiHelpers.getTextFromContents(
+      aiHelpers.getCandidateContents(candidates),
     );
 
     setMetaDescription(description);
