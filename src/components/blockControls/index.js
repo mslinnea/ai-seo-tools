@@ -1,7 +1,7 @@
 import { addFilter } from '@wordpress/hooks';
 import ImageControls from '../imageControls';
 
-const addToolbar = (BlockEdit) => (props) => {
+const addToolbar = (BlockEdit) => function(props) {
 	const { name } = props;
   if (name === 'core/image') {
     return (
@@ -11,7 +11,7 @@ const addToolbar = (BlockEdit) => (props) => {
 		</>
 		);
   }
-  return <BlockEdit name={name} {...props} />;
+  return <BlockEdit {...props} />;
 };
 
 addFilter(

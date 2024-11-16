@@ -2,9 +2,25 @@ import { __ } from '@wordpress/i18n';
 import { Icon, ToolbarButton } from '@wordpress/components';
 import { useState } from 'react';
 import { BlockControls } from '@wordpress/block-editor';
+import generateAltText from '../altText/index';
+import {useSelect} from "@wordpress/data";
 
-export default function ImageControls() {
+const { enums, helpers, store: aiStore } = window.aiServices.ai;
+const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
+
+export default function ImageControls(props) {
   const [inProgress, setInProgress] = useState(false);
+  const service = useSelect((select) => select(aiStore)
+  .getAvailableService(
+      { capabilities: AI_CAPABILITIES },
+  ));
+
+  const handleClick = async () => {
+    setInProgress(true);
+    await generateAltText(props, setInProgress, service);
+    setInProgress(false);
+  };
+
   return (
     <BlockControls group="inline">
       <ToolbarButton
@@ -12,7 +28,7 @@ export default function ImageControls() {
         icon="universal-access-alt"
         showTooltip
         disabled={inProgress}
-        onClick={() => console.log('alt text clicked')}
+        onClick={handleClick}
       />
     </BlockControls>
   );
