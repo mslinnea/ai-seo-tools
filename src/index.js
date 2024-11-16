@@ -1,1 +1,2 @@
-import './components/settingsScreen';
+import './components/settingsPanel';
+import './components/blockControls';

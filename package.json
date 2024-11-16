@@ -17,6 +17,8 @@
 		"@wordpress/components": "^28.0.3",
 		"@wordpress/data": "^10.0.2",
 		"@wordpress/editor": "^14.0.8",
+		"@wordpress/hooks": "^4.11.0",
+		"@wordpress/i18n": "^5.11.0",
 		"@wordpress/plugins": "^7.0.3",
 		"mustache": "^4.2.0",
 		"react": "^18.3.1",
