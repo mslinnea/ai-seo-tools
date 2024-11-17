@@ -1,7 +1,7 @@
 import { __ } from '@wordpress/i18n';
 import { getMimeType, getBase64Image } from '../../helpers/image-helpers';
 
-const { enums, helpers, store: aiStore } = window.aiServices.ai;
+const { enums, helpers } = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
 
 export default async function generateAltText(props, setInProgress, service) {
@@ -9,12 +9,14 @@ export default async function generateAltText(props, setInProgress, service) {
 
   // Check if AI service is available
   if (!service) {
+    // eslint-disable-next-line no-console
     console.error('AI service is not available.');
     return;
   }
 
   // Check if image URL is available
   if (!attributes.url) {
+    // eslint-disable-next-line no-console
     console.error('Image URL is missing.');
     return;
   }
@@ -59,6 +61,7 @@ export default async function generateAltText(props, setInProgress, service) {
     // Set the alt text attribute
     setAttributes({ alt });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.error('Error generating alt text:', error);
   } finally {
     setInProgress(false);

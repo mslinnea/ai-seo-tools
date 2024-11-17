@@ -1,19 +1,19 @@
 import { __ } from '@wordpress/i18n';
-import { Icon, ToolbarButton } from '@wordpress/components';
+import { ToolbarButton } from '@wordpress/components';
 import { useState } from 'react';
 import { BlockControls } from '@wordpress/block-editor';
+import { useSelect } from '@wordpress/data';
 import generateAltText from '../altText/index';
-import {useSelect} from "@wordpress/data";
 
-const { enums, helpers, store: aiStore } = window.aiServices.ai;
+const { enums, store: aiStore } = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
 
 export default function ImageControls(props) {
   const [inProgress, setInProgress] = useState(false);
   const service = useSelect((select) => select(aiStore)
-  .getAvailableService(
+    .getAvailableService(
       { capabilities: AI_CAPABILITIES },
-  ));
+    ));
 
   const handleClick = async () => {
     setInProgress(true);

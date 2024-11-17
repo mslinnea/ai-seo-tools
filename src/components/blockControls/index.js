@@ -1,15 +1,17 @@
 import { addFilter } from '@wordpress/hooks';
 import ImageControls from '../imageControls';
 
-const addToolbar = (BlockEdit) => function(props) {
-	const { name } = props;
+// eslint-disable-next-line func-names
+const addToolbar = (BlockEdit) => function (props) {
+  // eslint-disable-next-line react/prop-types
+  const { name } = props;
   if (name === 'core/image') {
     return (
-		<>
-			<BlockEdit {...props} />
-			<ImageControls {...props} />
-		</>
-		);
+      <>
+        <BlockEdit {...props} />
+        <ImageControls {...props} />
+      </>
+    );
   }
   return <BlockEdit {...props} />;
 };
