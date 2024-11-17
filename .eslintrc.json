@@ -1,6 +1,6 @@
 {
   "extends": [
-    "@alleyinteractive/eslint-config"
+    "@alleyinteractive/eslint-config/typescript-react"
   ],
   "settings": {
     "import/resolver": {
