@@ -7,6 +7,7 @@ be compatible with all AI services supported by the [AI Services Plugin](https:/
 
 - Generate Meta Description
 - Generate Meta Keywords
+- Generate Image Alt Text via Image Block toolbar button
 
 # Demo with OpenAI gpt-3.5-turbo model
 
