@@ -25,12 +25,12 @@ add_action(
 			return;
 		}
 
-		$asset_metadata                   = require plugin_dir_path( __FILE__ ) . 'build/index.asset.php';
+		$asset_metadata                   = require plugin_dir_path( __FILE__ ) . 'build/scripts.asset.php';
 		$asset_metadata['dependencies'][] = 'ais-ai-store';
 
 		wp_enqueue_script(
 			'ai-seo-tools',
-			plugin_dir_url( __FILE__ ) . 'build/index.js',
+			plugin_dir_url( __FILE__ ) . 'build/scripts.js',
 			$asset_metadata['dependencies'],
 			$asset_metadata['version'],
 
