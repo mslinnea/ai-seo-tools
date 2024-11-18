@@ -4,6 +4,7 @@
  *
  * @package AISEOTools
  */
+
 namespace LinSoftware\AISEOTools;
 
 /**

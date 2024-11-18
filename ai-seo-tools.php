@@ -10,6 +10,8 @@
  * License URI: https://www.gnu.org/licenses/gpl-3.0.html
  * Text Domain: ai-seo-tools
  * Requires Plugins: ai-services
+ *
+ * @package AISEOTools
  */
 
 namespace LinSoftware\AISEOTools;
@@ -33,9 +35,7 @@ add_action(
 			plugin_dir_url( __FILE__ ) . 'build/scripts.js',
 			$asset_metadata['dependencies'],
 			$asset_metadata['version'],
-
-			['strategy' => 'defer' ]
+			[ 'strategy' => 'defer' ]
 		);
 	}
 );
-
