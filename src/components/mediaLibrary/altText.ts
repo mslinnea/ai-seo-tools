@@ -16,7 +16,7 @@ if (View) {
 				.after(
 					'<span class="setting"><span class="name"></span>' +
 					'<button style="float: right" class="button generate-alt-text">' +
-					__('Generate Alt', 'your-text-domain') +
+					__('Generate Alt', 'ai-seo-tools') +
 					'</button></span>'
 				);
 		},
@@ -29,7 +29,7 @@ if (View) {
 		async generateAltText(event: Event) {
 			event.preventDefault();
 			const button = this.$el.find('.generate-alt-text');
-			button.text('Generating...').prop('disabled', true);
+			button.text(__('Generating...', 'ai-seo-tools')).prop('disabled', true);
 			const url = this.model.get('url');
 
 			try {
@@ -45,7 +45,7 @@ if (View) {
 							// Update the model
 							this.model.set('alt', altText);
 							this.model.save();
-							button.text(__('Generate Alt', 'your-text-domain')).prop('disabled', false);
+							button.text(__('Generate Alt', 'ai-seo-tools')).prop('disabled', false);
 							// Re-render the view
 							this.render();
 						} else {
@@ -57,7 +57,7 @@ if (View) {
 								await new Promise(r => setTimeout(r, 500));
 								this.generateAltText(event);
 							}
-							button.text(__('Generate Alt', 'your-text-domain')).prop('disabled', false);
+							button.text(__('Generate Alt', 'ai-seo-tools')).prop('disabled', false);
 						}
 					} catch (error) {
 						console.error("Error occurred while generating alt text:", error);
