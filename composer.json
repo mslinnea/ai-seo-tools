@@ -1,0 +1,27 @@
+{
+    "name": "mslinnea/ai-seo-tools",
+    "description": "WordPress plugin using Gen AI for SEO.",
+    "type": "project",
+    "autoload": {
+        "psr-4": {
+            "LinSoftware\\AISEOTools\\": "inc/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Linnea Huxford",
+            "email": "7308162+mslinnea@users.noreply.github.com"
+        }
+    ],
+    "require-dev": {
+        "alleyinteractive/alley-coding-standards": "^2.1"
+    },
+    "config": {
+        "allow-plugins": {
+            "dealerdirect/phpcodesniffer-composer-installer": true
+        }
+    },
+    "scripts": {
+        "phpcs" : "phpcs --standard=phpcs.xml.dist -s ."
+    }
+}
