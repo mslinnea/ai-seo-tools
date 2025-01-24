@@ -3,8 +3,6 @@
  * This version doesn't use React, so it can be used in the media library.
  */
 import {getBase64Image, getMimeType} from "../../helpers/image-helpers";
-import {__} from "@wordpress/i18n";
-
 const {enums, store: aiStore, helpers} = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
 
@@ -26,10 +24,7 @@ export default async function generateAltTextFromUrl(url: string) {
 				role: enums.ContentRole.USER,
 				parts: [
 					{
-						text: __(
-							"Create a brief description of what the following image shows, suitable as alternative text for screen readers.",
-							"ai-seo-tools"
-						),
+						text: getPrompt(),
 					},
 					{
 						inlineData: {

@@ -1,8 +1,8 @@
-import { __ } from '@wordpress/i18n';
 import { getMimeType, getBase64Image } from '../../helpers/image-helpers';
 
 const { enums, helpers } = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
+import getPrompt from "../prompts/altTextPrompt";
 
 export default async function generateAltText(props, setInProgress, service) {
   const { attributes, setAttributes } = props;
@@ -34,10 +34,7 @@ export default async function generateAltText(props, setInProgress, service) {
         role: enums.ContentRole.USER,
         parts: [
           {
-            text: __(
-              'Create a brief description of what the following image shows, suitable as alternative text for screen readers.',
-              'ai-seo-tools',
-            ),
+            text: getPrompt(),
           },
           {
             inlineData: {
