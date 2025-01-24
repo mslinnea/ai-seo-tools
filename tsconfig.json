@@ -1,3 +1,4 @@
 {
-  "extends": "@alleyinteractive/tsconfig/base.json"
+  "extends": "@alleyinteractive/tsconfig/base.json",
+	"lib": ["dom", "es6"]
 }

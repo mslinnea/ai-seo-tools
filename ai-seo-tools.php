@@ -19,8 +19,10 @@ namespace LinSoftware\AISEOTools;
 require_once __DIR__ . '/inc/post-meta.php';
 require_once __DIR__ . '/inc/wp-head.php';
 
+// Enqueue scripts in both block editor and other admin pages like media library
+// todo: possibly separate out media library enqueue.
 add_action(
-	'enqueue_block_editor_assets',
+	'admin_enqueue_scripts',
 	static function () {
 		// Bail if the AI Services plugin is not active.
 		if ( ! function_exists( 'ai_services' ) ) {
