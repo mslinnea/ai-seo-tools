@@ -46,7 +46,7 @@ if (View) {
 							// Update the model
 							this.model.set('alt', altText);
 							this.model.save();
-							button.text(__('Generate Alt', 'ai-seo-tools')).prop('disabled', false);
+							button.text(__('Generate Alt Text', 'ai-seo-tools')).prop('disabled', false);
 							// Re-render the view
 							this.render();
 						} else {
