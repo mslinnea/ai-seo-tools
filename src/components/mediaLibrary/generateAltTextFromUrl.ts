@@ -7,7 +7,7 @@ import getPrompt from "../prompts/altTextPrompt";
 const {enums, store: aiStore, helpers} = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
 
-export default async function generateAltTextFromUrl(url: string) {
+export default async function generateAltTextFromUrl(url: string, title: string|null|undefined, filename: string|null|undefined) {
 
 	const service = window.wp.data.select(aiStore)?.getAvailableService({
 		capabilities: AI_CAPABILITIES,
@@ -20,12 +20,19 @@ export default async function generateAltTextFromUrl(url: string) {
 		const mimeType = getMimeType(url);
 		const base64Image = await getBase64Image(url);
 
+		let prompt = getPrompt();
+		if (title?.length) {
+			prompt += `\n\nImage Title: ${title}`;
+		}
+		if (filename?.length) {
+			prompt += `\n\nFilename: ${filename}`;
+		}
 		const candidates = await service.generateText(
 			{
 				role: enums.ContentRole.USER,
 				parts: [
 					{
-						text: getPrompt(),
+						text: prompt,
 					},
 					{
 						inlineData: {

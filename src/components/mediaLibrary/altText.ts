@@ -37,7 +37,7 @@ if (View) {
 			try {
 				(async () => {
 					try {
-						const altText = await generateAltTextFromUrl(url);
+						const altText = await generateAltTextFromUrl(url, this.model.get('title'), this.model.get('filename'));
 						tries++;
 						if (altText) {
 							console.log("Generated Alt Text:", altText);
