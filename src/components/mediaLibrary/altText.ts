@@ -32,7 +32,6 @@ if (View) {
 			const button = this.$el.find('.generate-alt-text');
 			button.text(__('Generating...', 'ai-seo-tools')).prop('disabled', true);
 			const url = this.model.get('url');
-			console.dir(this.model);
 
 			try {
 				(async () => {
