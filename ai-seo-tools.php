@@ -31,6 +31,7 @@ add_action(
 
 		$asset_metadata                   = require plugin_dir_path( __FILE__ ) . 'build/scripts.asset.php';
 		$asset_metadata['dependencies'][] = 'ais-ai-store';
+		$asset_metadata['version']        = filemtime( plugin_dir_path( __FILE__ ) . 'build/scripts.js' );
 
 		wp_enqueue_script(
 			'ai-seo-tools',

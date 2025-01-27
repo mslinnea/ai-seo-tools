@@ -16,7 +16,7 @@ if (View) {
 				.after(
 					'<span class="setting"><span class="name"></span>' +
 					'<button style="float: right" class="button generate-alt-text">' +
-					__('Generate Alt', 'ai-seo-tools') +
+					__('Generate Alt Text', 'ai-seo-tools') +
 					'</button></span>'
 				);
 			this.$el.find('#attachment-details-two-column-alt-text').prop('rows', '10').css('height', 'auto');
@@ -36,7 +36,7 @@ if (View) {
 			try {
 				(async () => {
 					try {
-						const altText = await generateAltTextFromUrl(url);
+						const altText = await generateAltTextFromUrl(url, this.model.get('title'), this.model.get('filename'));
 						tries++;
 						if (altText) {
 							console.log("Generated Alt Text:", altText);
