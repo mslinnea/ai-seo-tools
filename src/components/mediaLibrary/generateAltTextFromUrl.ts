@@ -3,6 +3,7 @@
  * This version doesn't use React, so it can be used in the media library.
  */
 import {getBase64Image, getMimeType} from "../../helpers/image-helpers";
+import getPrompt from "../prompts/altTextPrompt";
 const {enums, store: aiStore, helpers} = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
 

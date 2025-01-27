@@ -16,7 +16,7 @@ if (View) {
 				.after(
 					'<span class="setting"><span class="name"></span>' +
 					'<button style="float: right" class="button generate-alt-text">' +
-					__('Generate Alt', 'ai-seo-tools') +
+					__('Generate Alt Text', 'ai-seo-tools') +
 					'</button></span>'
 				);
 			this.$el.find('#attachment-details-two-column-alt-text').prop('rows', '10').css('height', 'auto');
@@ -32,6 +32,7 @@ if (View) {
 			const button = this.$el.find('.generate-alt-text');
 			button.text(__('Generating...', 'ai-seo-tools')).prop('disabled', true);
 			const url = this.model.get('url');
+			console.dir(this.model);
 
 			try {
 				(async () => {
