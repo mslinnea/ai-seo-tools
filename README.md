@@ -16,7 +16,7 @@ be compatible with all AI services supported by the [AI Services Plugin](https:/
 
 # Media Library Integration
 
-![CleanShot 2025-01-23 at 20 49 07@2x](https://github.com/user-attachments/assets/4bf1d73b-6fe9-4421-b078-3e8ae0a6a5d5)
+![CleanShot 2025-01-27 at 07 36 29@2x](https://github.com/user-attachments/assets/6b2db4b5-2fc4-4975-9f42-ae31bdcc9392)
 
 # Requirements
 
