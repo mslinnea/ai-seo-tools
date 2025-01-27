@@ -19,6 +19,7 @@ if (View) {
 					__('Generate Alt', 'ai-seo-tools') +
 					'</button></span>'
 				);
+			this.$el.find('#attachment-details-two-column-alt-text').prop('rows', '10').css('height', 'auto');
 		},
 
 		events: {
