@@ -7,10 +7,10 @@ import getPrompt from "../prompts/altTextPrompt";
 const {enums, store: aiStore, helpers} = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
 
-export default async function generateAltTextFromUrl(url: string, title: string|null|undefined, filename: string|null|undefined) {
-
+export default async function generateAltTextFromUrl(url: string, title: string|null|undefined, filename: string|null|undefined, aiService: string|null|undefined) {
 	const service = window.wp.data.select(aiStore)?.getAvailableService({
 		capabilities: AI_CAPABILITIES,
+		slugs: [aiService],
 	});
 	if (!service || !url) {
 		return;
