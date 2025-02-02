@@ -6,6 +6,7 @@
 		"@alleyinteractive/eslint-config": "^0.1.6",
 		"@alleyinteractive/tsconfig": "^0.1.1",
 		"@eslint/js": "^9.14.0",
+		"@types/backbone": "^1.4.22",
 		"@types/react": "^19.0.7",
 		"@types/react-dom": "^19.0.3",
 		"@typescript-eslint/parser": "^6.21.0",
