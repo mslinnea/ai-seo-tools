@@ -1,13 +1,15 @@
 import {__} from '@wordpress/i18n';
 import generateAltTextFromUrl from './generateAltTextFromUrl';
+import Backbone from 'backbone';
 
 declare const wp: any;
 
-const View: any = wp.media.view.Attachment.Details.TwoColumn || wp.media.view.Attachment.Details;
+const View = ( wp.media.view.Attachment.Details.TwoColumn || wp.media.view.Attachment.Details ) as Backbone.View;
 
 if (View) {
 	const originalRender = View.prototype.render;
 	let tries = 0;
+	// @ts-ignore
 	const AttachmentDetailsOverride = View.extend({
 		render: function () {
 			originalRender.call(this);
@@ -34,7 +36,7 @@ if (View) {
 			const url = this.model.get('url');
 
 			try {
-				(async () => {
+				await (async () => {
 					try {
 						const altText = await generateAltTextFromUrl(url, this.model.get('title'), this.model.get('filename'));
 						tries++;
@@ -52,7 +54,7 @@ if (View) {
 						} else {
 							console.log("No alt text could be generated for the provided image.");
 							// todo: determine why alt text fails sometimes.
-							if (tries<2) {
+							if (tries < 2) {
 								console.log("Retrying...");
 								// sleep half a second
 								await new Promise(r => setTimeout(r, 500));
