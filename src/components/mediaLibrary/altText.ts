@@ -4,7 +4,10 @@ import Backbone from 'backbone';
 
 declare const wp: any;
 
-const View = (wp.media.view.Attachment.Details.TwoColumn || wp.media.view.Attachment.Details) as Backbone.View;
+const View = (
+	window.wp?.media?.view?.Attachment?.Details?.TwoColumn ||
+	window.wp?.media?.view?.Attachment?.Details
+) as Backbone.View | undefined;
 
 if (View) {
 	const originalRender = View.prototype.render;
@@ -14,7 +17,8 @@ if (View) {
 		render: function () {
 			originalRender.call(this);
 
-			const savedService = localStorage.getItem('seoToolsAltTextAIService') || 'openai';
+			const savedService = localStorage.getItem('seoToolsAltTextAIService')
+				|| window.aiSeoToolsSettings.preferred_service;
 
 			// Add dropdown and button
 			this.$el

@@ -3,7 +3,7 @@
  * This version doesn't use React, so it can be used in the media library.
  */
 import {getBase64Image, getMimeType} from "../../helpers/image-helpers";
-import getPrompt from "../prompts/altTextPrompt";
+import {getUserPrompt, getSystemPrompt} from "../prompts/altTextPrompt";
 const {enums, store: aiStore, helpers} = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
 
@@ -12,6 +12,7 @@ export default async function generateAltTextFromUrl(url: string, title: string|
 		capabilities: AI_CAPABILITIES,
 		slugs: [aiService],
 	});
+
 	if (!service || !url) {
 		return;
 	}
@@ -20,13 +21,14 @@ export default async function generateAltTextFromUrl(url: string, title: string|
 		const mimeType = getMimeType(url);
 		const base64Image = await getBase64Image(url);
 
-		let prompt = getPrompt();
+		let prompt = getUserPrompt(service);
 		if (title?.length) {
 			prompt += `\n\nImage Title: ${title}`;
 		}
 		if (filename?.length) {
 			prompt += `\n\nFilename: ${filename}`;
 		}
+
 		const candidates = await service.generateText(
 			{
 				role: enums.ContentRole.USER,

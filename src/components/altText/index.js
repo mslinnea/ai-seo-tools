@@ -2,7 +2,7 @@ import { getMimeType, getBase64Image } from '../../helpers/image-helpers';
 
 const { enums, helpers } = window.aiServices.ai;
 const AI_CAPABILITIES = [enums.AiCapability.MULTIMODAL_INPUT, enums.AiCapability.TEXT_GENERATION];
-import getPrompt from "../prompts/altTextPrompt";
+import { getUserPrompt, getSystemPrompt } from "../prompts/altTextPrompt";
 
 export default async function generateAltText(props, setInProgress, service) {
   const { attributes, setAttributes } = props;
@@ -34,7 +34,7 @@ export default async function generateAltText(props, setInProgress, service) {
         role: enums.ContentRole.USER,
         parts: [
           {
-            text: getPrompt(),
+            text: getUserPrompt(service),
           },
           {
             inlineData: {
