@@ -10,13 +10,13 @@ be compatible with all AI services supported by the [AI Services Plugin](https:/
 - Generate Image Alt Text via Image Block toolbar button
 - Generate Image Alt Text in Media Library
 
+# Media Library Integration
+
+![CleanShot 2025-02-02 at 06 51 37@2x](https://github.com/user-attachments/assets/45fc1135-cb50-466c-b0c7-716524039247)
+
 # Demo with OpenAI gpt-3.5-turbo model
 
 ![CleanShot 2024-11-09 at 08 59 00](https://github.com/user-attachments/assets/1f137840-f8f2-42e9-be60-d32e0e011bcb)
-
-# Media Library Integration
-
-![CleanShot 2025-01-27 at 07 36 29@2x](https://github.com/user-attachments/assets/6b2db4b5-2fc4-4975-9f42-ae31bdcc9392)
 
 # Requirements
 
