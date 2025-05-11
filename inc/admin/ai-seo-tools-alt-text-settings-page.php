@@ -161,7 +161,12 @@ function ai_seo_text_field( $args ) {
 function ai_seo_model_dropdown( $args ) {
 	$options        = get_option( 'ai_seo_tools_settings' );
 	$selected_model = $options[ $args['id'] ] ?? get_default_model( $args['service'] );
-	$models         = get_available_models( $args['service'] );
+
+    try {
+	    $models         = get_available_models( $args['service'] );
+    } catch ( \Exception $e ) {
+        $models = [];
+    }
 	$disabled       = is_api_service_available( $args['service'] ) ? '' : 'disabled';
 
 	echo "<select id='{$args['id']}' name='ai_seo_tools_settings[{$args['id']}]' $disabled>";
