@@ -13,6 +13,9 @@ export function getMimeType(url: string) : string {
 }
 
 export async function getBase64Image(url:string) : Promise<string> {
+  if (url.startsWith('http:')) {
+      url = url.replace('http:', 'https:');
+  }
   const data : Response = await fetch(url);
   const blob: Blob = await data.blob();
   return new Promise((resolve, reject) => {
