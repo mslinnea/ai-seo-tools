@@ -1,5 +1,7 @@
 # WordPress Plugin: AI SEO Tools
 
+# NOTE: This plugin has been archived.
+
 This plugin provides a set of tools to help with automating SEO using Generative AI.  Tested with OpenAI, and should
 be compatible with all AI services supported by the [AI Services Plugin](https://github.com/felixarntz/ai-services).
 
