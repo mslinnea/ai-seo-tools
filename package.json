@@ -10,7 +10,7 @@
 		"@types/react": "^19.0.7",
 		"@types/react-dom": "^19.0.3",
 		"@typescript-eslint/parser": "^6.21.0",
-		"@wordpress/scripts": "^28.0.2",
+		"@wordpress/scripts": "^30.24.0",
 		"eslint": "^8.57.1",
 		"eslint-import-resolver-webpack": "^0.13.9",
 		"eslint-plugin-react": "^7.37.2",
